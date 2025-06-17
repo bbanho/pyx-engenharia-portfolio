@@ -1,15 +1,80 @@
-# pyx-engenharia-portfolio
+# PYX Engenharia Portfolio
 
-PYX Engenharia e Consultoria - Portfólio Profissional
+Modern portfolio website for PYX Engenharia e Consultoria, featuring responsive design, internationalization, and performance optimizations.
 
-## GitHub Pages
+## Features
 
-This repository is configured for GitHub Pages. The site is available at:
-https://bbanho.github.io/pyx-engenharia-portfolio
+- 🌐 Internationalization (i18n) support
+- 📱 Responsive design
+- 🎨 Modern UI with alternating backgrounds
+- 📊 Dynamic portfolio from JSON
+- 💬 WhatsApp integration
+- 📄 Legal information section
+- 🚀 Performance optimized
+- 🔍 SEO friendly
+- ♿ Accessibility compliant
+
+## Tech Stack
+
+- HTML5
+- CSS3 (with CSS Variables)
+- JavaScript (ES6+)
+- JSON for data management
+- GitHub Pages for hosting
+- GitHub Actions for CI/CD
+
+## Performance Considerations
+
+- Lazy loading of images
+- Optimized JSON data structure
+- Minimal dependencies
+- Efficient CSS with variables
+- Responsive images
+- Cached translations
 
 ## Development
 
-Edit `index.html` to customize your site content.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bbanho/pyx-engenharia-portfolio.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run development server:
+   ```bash
+   npm run dev
+   ```
+
+## CI/CD Pipeline
+
+The project uses GitHub Actions for continuous integration and deployment:
+
+1. **Build**: Validates HTML, CSS, and JavaScript
+2. **Test**: Runs Lighthouse and accessibility tests
+3. **Deploy**: Automatically deploys to GitHub Pages
+
+## Documentation
+
+- `index.html`: Main application file
+- `portfolio.json`: Portfolio data
+- `translations.json`: Internationalization data
+- `.github/workflows/deploy.yml`: CI/CD configuration
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+MIT License - see LICENSE file for details
 
 ---
 
