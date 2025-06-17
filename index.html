@@ -9,10 +9,10 @@
     <style>
         :root {
             --primary-color: #1b5040;
-            --secondary-color: #85662e;
-            --accent-color: #dde8cb;
-            --text-primary: #ffffff;
-            --text-secondary: #dde8cb;
+            --secondary-color: #dde8cb;
+            --accent-color: #886523;
+            --text-primary: #1b5040;
+            --text-secondary: #886523;
             --white: #ffffff;
             --transition: all 0.3s ease;
         }
@@ -31,7 +31,7 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
-            background-color: var(--primary-color);
+            background-color: var(--white);
         }
 
         .container {
@@ -42,7 +42,7 @@
 
         /* Header Styles */
         header {
-            background: var(--secondary-color);
+            background: var(--white);
             position: fixed;
             width: 100%;
             top: 0;
@@ -63,22 +63,17 @@
             gap: 1rem;
         }
 
-        .logo img {
-            height: 60px;
-            width: auto;
-        }
-
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--accent-color);
-            display: none; /* Hide text when using logo */
+            color: var(--primary-color);
+            display: block; /* Show text again */
         }
 
         .logo p {
             color: var(--text-secondary);
             font-size: 0.9rem;
-            display: none; /* Hide text when using logo */
+            display: block; /* Show text again */
         }
 
         .contact-info {
@@ -97,7 +92,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
                         url('https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
@@ -117,7 +112,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: var(--white);
+            color: var(--primary-color);
             line-height: 1.2;
         }
 
@@ -132,6 +127,10 @@
             padding: 6rem 0;
         }
 
+        section:nth-child(even) {
+            background: var(--secondary-color);
+        }
+
         .section-title {
             text-align: center;
             margin-bottom: 4rem;
@@ -139,7 +138,7 @@
 
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--white);
+            color: var(--primary-color);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
@@ -166,11 +165,11 @@
 
         /* Card Styles */
         .area-card, .service-card, .project-card {
-            background: var(--secondary-color);
+            background: var(--white);
             padding: 2rem;
             border-radius: 10px;
             transition: var(--transition);
-            border: 1px solid rgba(100, 255, 218, 0.1);
+            border: 1px solid var(--secondary-color);
         }
 
         .area-card:hover, .service-card:hover, .project-card:hover {
@@ -179,7 +178,7 @@
         }
 
         .area-card h3, .service-card h3, .project-card h3 {
-            color: var(--accent-color);
+            color: var(--primary-color);
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
@@ -210,9 +209,10 @@
 
         /* Footer Styles */
         footer {
-            background: var(--secondary-color);
+            background: var(--primary-color);
             padding: 4rem 0;
             margin-top: 4rem;
+            color: var(--white);
         }
 
         .footer-content {
@@ -222,13 +222,13 @@
         }
 
         .footer-section h3 {
-            color: var(--accent-color);
+            color: var(--secondary-color);
             margin-bottom: 1.5rem;
             font-size: 1.3rem;
         }
 
         .footer-section p {
-            color: var(--text-secondary);
+            color: var(--white);
             margin-bottom: 0.5rem;
         }
 
@@ -274,7 +274,6 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="logo.svg" alt="PYX Engenharia Logo">
                     <h1>PYX ENGENHARIA</h1>
                     <p>E CONSULTORIA LTDA.</p>
                 </div>
