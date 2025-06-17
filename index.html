@@ -1,37 +1,322 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pyx-engenharia-portfolio</title>
+    <title>PYX Engenharia e Consultoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #2962ff;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .contact-info p {
+            margin: 0.25rem 0;
+        }
+
+        .hero {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
         }
-        .header {
+
+        section {
+            padding: 4rem 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--light-bg);
+        }
+
+        .section-title {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
-        .content {
-            background: #f5f5f5;
-            padding: 1.5rem;
+
+        .section-title h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .area-card {
+            background: var(--white);
+            padding: 2rem;
             border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>pyx-engenharia-portfolio</h1>
-        <p>PYX Engenharia e Consultoria - Portfólio Profissional</p>
-    </div>
-    <div class="content">
-        <h2>Welcome!</h2>
-        <p>This is your GitHub Pages site. Edit this file to customize your content.</p>
-        <p>Generated on: ter 17 jun 2025 01:11:54 -03</p>
-    </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>PYX ENGENHARIA</h1>
+                    <p>E CONSULTORIA LTDA.</p>
+                </div>
+                <div class="contact-info">
+                    <p>CREA-SP: 0547274</p>
+                    <p>CNPJ: 03.592.483/0001-59</p>
+                    <p>www.pyx.eng.br</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Excelência em Engenharia Aeronáutica e Mecânica</h2>
+            <p>Desde 1999, oferecendo soluções técnicas especializadas em engenharia aeronáutica e mecânica para empresas e pessoas físicas.</p>
+        </div>
+    </section>
+
+    <section id="areas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Áreas de Atuação</h2>
+            </div>
+            <div class="areas-grid">
+                <div class="area-card">
+                    <h3>Engenharia Aeronáutica</h3>
+                    <p>Especialistas em manutenção de aeronaves e homologação de empresas aéreas.</p>
+                </div>
+                <div class="area-card">
+                    <h3>Engenharia Mecânica</h3>
+                    <p>Serviços técnicos especializados em equipamentos e máquinas.</p>
+                </div>
+                <div class="area-card">
+                    <h3>Consultoria</h3>
+                    <p>Assessoria técnica especializada para sua empresa.</p>
+                </div>
+                <div class="area-card">
+                    <h3>Perícia</h3>
+                    <p>Vistorias técnicas e laudos periciais especializados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Serviços Oferecidos</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Engenharia Aeronáutica</h3>
+                    <ul>
+                        <li>Gerenciamento e controle de aeronaves</li>
+                        <li>Controle técnico de manutenção</li>
+                        <li>Avaliação técnica e econômica</li>
+                        <li>Certificação e homologação</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Engenharia Mecânica</h3>
+                    <ul>
+                        <li>Regulamentação e vistorias</li>
+                        <li>Perícia técnica</li>
+                        <li>Avaliação e arbitragem</li>
+                        <li>Laudos técnicos especializados</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Consultoria Técnica</h3>
+                    <ul>
+                        <li>Assessoria técnica especializada</li>
+                        <li>Planejamento e projetos</li>
+                        <li>Estudos de viabilidade</li>
+                        <li>Direção de obra e serviço técnico</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projetos e Experiência</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Engenharia Aeronáutica</h3>
+                    <p>Extensa experiência em:</p>
+                    <ul>
+                        <li>Manutenção de aeronaves</li>
+                        <li>Certificação de empresas aéreas</li>
+                        <li>Vistorias técnicas</li>
+                        <li>Perícias aeronáuticas</li>
+                    </ul>
+                </div>
+                <div class="project-card">
+                    <h3>Engenharia Mecânica</h3>
+                    <p>Projetos em diversas áreas:</p>
+                    <ul>
+                        <li>Automobilística</li>
+                        <li>Energia eólica</li>
+                        <li>Energia nuclear</li>
+                        <li>Indústria e mineração</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>Rua Frei Caneca, 180</p>
+                    <p>Consolação - São Paulo - SP</p>
+                    <p>CEP 01307-000</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Diretoria</h3>
+                    <p><strong>Diretor Técnico:</strong> Paulo Sergio Rodrigues</p>
+                    <p><strong>Diretor Executivo:</strong> Renato Funicelli Vigneron</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato Direto</h3>
+                    <p>Email: paulo.rodrigues@pyx.eng.br</p>
+                    <p>Tel: (11) 95350-7373</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,99 @@
+# Cursor AI Agent Integration Instructions
+
+## Shared Context File
+Location: `/tmp/ai_shared_context/context.json`
+
+This file contains shared state between Warp terminal agent and Cursor agent.
+
+## GitHub Pages Setup
+
+### Quick Setup Command
+```bash
+# From Cursor or terminal:
+~/.config/warp-agent/setup-gh-pages.sh <repo-name> [description]
+
+# Example:
+~/.config/warp-agent/setup-gh-pages.sh my-portfolio "My awesome portfolio site"
+```
+
+### Management Commands
+```bash
+# List all GitHub Pages repos
+gh-pages list
+
+# Open a repository's GitHub Pages URL
+gh-pages open <repo-name>
+
+# Get path to repository
+gh-pages cd <repo-name>
+
+# Quick update (commit + push)
+gh-pages update <repo-name> "Commit message"
+
+# View AI context
+gh-pages context
+```
+
+### What the Setup Script Does
+1. ✅ Creates local repository in `~/projects/<repo-name>`
+2. ✅ Generates basic HTML structure with responsive design
+3. ✅ Creates README.md with instructions
+4. ✅ Sets up .gitignore
+5. ✅ Creates GitHub repository (public)
+6. ✅ Enables GitHub Pages automatically
+7. ✅ Updates shared AI context with repo info
+8. ✅ Provides URLs for both GitHub repo and Pages site
+
+### Repository Structure Created
+```
+~/projects/<repo-name>/
+├── index.html          # Main page with basic styling
+├── README.md          # Documentation
+└── .gitignore         # Git ignore rules
+```
+
+### AI Context Integration
+The script automatically:
+- Updates shared context with repository information
+- Stores repo name, paths, and URLs
+- Logs all actions for reference
+- Maintains history of created repositories
+
+### Usage from Cursor
+1. **Create repo:** Run the setup script with desired name
+2. **Edit content:** Modify files in the local repository
+3. **Update site:** Use `gh-pages update <repo-name>` to push changes
+4. **Check context:** Use `ai-context show` to see current state
+
+### Prerequisites
+- GitHub CLI (`gh`) installed and authenticated
+- Git configured
+- `jq` for JSON processing
+
+### Example Workflow
+```bash
+# 1. Create new GitHub Pages site
+setup-gh-pages my-awesome-project "My awesome project showcase"
+
+# 2. Navigate to project (from output path)
+cd ~/projects/my-awesome-project
+
+# 3. Edit index.html (Cursor can do this)
+# ... make changes ...
+
+# 4. Quick update
+gh-pages update my-awesome-project "Added new features"
+
+# 5. Open the live site
+gh-pages open my-awesome-project
+```
+
+The repository will be available at:
+- GitHub: `https://github.com/<username>/<repo-name>`
+- GitHub Pages: `https://<username>.github.io/<repo-name>`
+
+---
+
+*This integration allows seamless collaboration between Warp terminal agent and Cursor for rapid GitHub Pages development.*
+
+
