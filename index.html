@@ -42,21 +42,19 @@
 
         /* Header Styles */
         header {
+            background: var(--secondary-color);
             position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
 
         .logo {
@@ -65,22 +63,15 @@
             gap: 1rem;
         }
 
-        .logo-icon {
-            font-size: 2rem;
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--accent-color);
         }
 
-        .logo-text h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-            margin: 0;
-        }
-
-        .logo-text p {
-            font-size: 0.9rem;
+        .logo p {
             color: var(--text-secondary);
-            margin: 0;
+            font-size: 0.9rem;
         }
 
         .contact-info {
@@ -89,88 +80,49 @@
             align-items: center;
         }
 
-        .contact-item {
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            color: var(--accent-color);
         }
 
         /* Hero Section */
         .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
+                        url('https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding: 8rem 0 4rem;
-            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%2364ffda" opacity="0.1"/></svg>');
-            opacity: 0.1;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .hero h2 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
+            color: var(--white);
             line-height: 1.2;
-            background: linear-gradient(45deg, var(--white), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            max-width: 600px;
             margin-bottom: 2rem;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .cta-button:hover {
-            background: rgba(100, 255, 218, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Sections */
+        /* Section Styles */
         section {
             padding: 6rem 0;
-            position: relative;
-        }
-
-        section:nth-child(even) {
-            background: var(--secondary-color);
         }
 
         .section-title {
@@ -197,7 +149,7 @@
             background: var(--accent-color);
         }
 
-        /* Cards */
+        /* Grid Layouts */
         .areas-grid, .services-grid, .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -205,10 +157,11 @@
             margin-top: 2rem;
         }
 
+        /* Card Styles */
         .area-card, .service-card, .project-card {
-            background: rgba(17, 34, 64, 0.7);
+            background: var(--secondary-color);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: var(--transition);
             border: 1px solid rgba(100, 255, 218, 0.1);
         }
@@ -216,60 +169,43 @@
         .area-card:hover, .service-card:hover, .project-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
         }
 
         .area-card h3, .service-card h3, .project-card h3 {
-            color: var(--white);
+            color: var(--accent-color);
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
         .area-card p, .service-card p, .project-card p {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
         }
 
-        .service-card ul, .project-card ul {
+        /* List Styles */
+        ul {
             list-style: none;
-            padding: 0;
+            margin-top: 1rem;
         }
 
-        .service-card li, .project-card li {
+        li {
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
             padding-left: 1.5rem;
             position: relative;
         }
 
-        .service-card li::before, .project-card li::before {
+        li::before {
             content: '▹';
             position: absolute;
             left: 0;
             color: var(--accent-color);
         }
 
-        /* Footer */
+        /* Footer Styles */
         footer {
             background: var(--secondary-color);
             padding: 4rem 0;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+            margin-top: 4rem;
         }
 
         .footer-content {
@@ -279,43 +215,14 @@
         }
 
         .footer-section h3 {
-            color: var(--white);
+            color: var(--accent-color);
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--accent-color);
+            font-size: 1.3rem;
         }
 
         .footer-section p {
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
         }
 
         /* Responsive Design */
@@ -328,7 +235,7 @@
 
             .contact-info {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.5rem;
             }
 
             .hero h2 {
@@ -342,14 +249,8 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .area-card, .service-card, .project-card {
@@ -366,21 +267,13 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-cogs logo-icon"></i>
-                    <div class="logo-text">
-                        <h1>PYX ENGENHARIA</h1>
-                        <p>E CONSULTORIA LTDA.</p>
-                    </div>
+                    <h1>PYX ENGENHARIA</h1>
+                    <p>E CONSULTORIA LTDA.</p>
                 </div>
                 <div class="contact-info">
-                    <a href="tel:+5511953507373" class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>(11) 95350-7373</span>
-                    </a>
-                    <a href="mailto:paulo.rodrigues@pyx.eng.br" class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>paulo.rodrigues@pyx.eng.br</span>
-                    </a>
+                    <p><i class="fas fa-certificate"></i> CREA-SP: 0547274</p>
+                    <p><i class="fas fa-building"></i> CNPJ: 03.592.483/0001-59</p>
+                    <p><i class="fas fa-globe"></i> www.pyx.eng.br</p>
                 </div>
             </div>
         </div>
@@ -391,7 +284,6 @@
             <div class="hero-content">
                 <h2>Excelência em Engenharia Aeronáutica e Mecânica</h2>
                 <p>Desde 1999, oferecendo soluções técnicas especializadas em engenharia aeronáutica e mecânica para empresas e pessoas físicas.</p>
-                <a href="#contact" class="cta-button">Entre em Contato</a>
             </div>
         </div>
     </section>
@@ -403,23 +295,19 @@
             </div>
             <div class="areas-grid">
                 <div class="area-card">
-                    <i class="fas fa-plane-departure card-icon"></i>
-                    <h3>Engenharia Aeronáutica</h3>
+                    <h3><i class="fas fa-plane"></i> Engenharia Aeronáutica</h3>
                     <p>Especialistas em manutenção de aeronaves e homologação de empresas aéreas.</p>
                 </div>
                 <div class="area-card">
-                    <i class="fas fa-cogs card-icon"></i>
-                    <h3>Engenharia Mecânica</h3>
+                    <h3><i class="fas fa-cogs"></i> Engenharia Mecânica</h3>
                     <p>Serviços técnicos especializados em equipamentos e máquinas.</p>
                 </div>
                 <div class="area-card">
-                    <i class="fas fa-handshake card-icon"></i>
-                    <h3>Consultoria</h3>
+                    <h3><i class="fas fa-handshake"></i> Consultoria</h3>
                     <p>Assessoria técnica especializada para sua empresa.</p>
                 </div>
                 <div class="area-card">
-                    <i class="fas fa-clipboard-check card-icon"></i>
-                    <h3>Perícia</h3>
+                    <h3><i class="fas fa-clipboard-check"></i> Perícia</h3>
                     <p>Vistorias técnicas e laudos periciais especializados.</p>
                 </div>
             </div>
@@ -433,8 +321,7 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-plane card-icon"></i>
-                    <h3>Engenharia Aeronáutica</h3>
+                    <h3><i class="fas fa-plane-departure"></i> Engenharia Aeronáutica</h3>
                     <ul>
                         <li>Gerenciamento e controle de aeronaves</li>
                         <li>Controle técnico de manutenção</li>
@@ -443,8 +330,7 @@
                     </ul>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-tools card-icon"></i>
-                    <h3>Engenharia Mecânica</h3>
+                    <h3><i class="fas fa-tools"></i> Engenharia Mecânica</h3>
                     <ul>
                         <li>Regulamentação e vistorias</li>
                         <li>Perícia técnica</li>
@@ -453,8 +339,7 @@
                     </ul>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-chart-line card-icon"></i>
-                    <h3>Consultoria Técnica</h3>
+                    <h3><i class="fas fa-chart-line"></i> Consultoria Técnica</h3>
                     <ul>
                         <li>Assessoria técnica especializada</li>
                         <li>Planejamento e projetos</li>
@@ -473,8 +358,7 @@
             </div>
             <div class="projects-grid">
                 <div class="project-card">
-                    <i class="fas fa-plane-arrival card-icon"></i>
-                    <h3>Engenharia Aeronáutica</h3>
+                    <h3><i class="fas fa-plane"></i> Engenharia Aeronáutica</h3>
                     <p>Extensa experiência em:</p>
                     <ul>
                         <li>Manutenção de aeronaves</li>
@@ -484,8 +368,7 @@
                     </ul>
                 </div>
                 <div class="project-card">
-                    <i class="fas fa-industry card-icon"></i>
-                    <h3>Engenharia Mecânica</h3>
+                    <h3><i class="fas fa-industry"></i> Engenharia Mecânica</h3>
                     <p>Projetos em diversas áreas:</p>
                     <ul>
                         <li>Automobilística</li>
@@ -498,30 +381,24 @@
         </div>
     </section>
 
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Contato</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Rua Frei Caneca, 180</p>
+                    <h3><i class="fas fa-map-marker-alt"></i> Contato</h3>
+                    <p>Rua Frei Caneca, 180</p>
                     <p>Consolação - São Paulo - SP</p>
                     <p>CEP 01307-000</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Diretoria</h3>
+                    <h3><i class="fas fa-users"></i> Diretoria</h3>
                     <p><strong>Diretor Técnico:</strong> Paulo Sergio Rodrigues</p>
                     <p><strong>Diretor Executivo:</strong> Renato Funicelli Vigneron</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    </div>
                 </div>
                 <div class="footer-section">
-                    <h3>Contato Direto</h3>
+                    <h3><i class="fas fa-phone"></i> Contato Direto</h3>
                     <p><i class="fas fa-envelope"></i> paulo.rodrigues@pyx.eng.br</p>
-                    <p><i class="fas fa-phone"></i> (11) 95350-7373</p>
-                    <p><i class="fas fa-globe"></i> www.pyx.eng.br</p>
+                    <p><i class="fas fa-phone-alt"></i> (11) 95350-7373</p>
                 </div>
             </div>
         </div>
