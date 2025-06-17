@@ -267,6 +267,120 @@
         .area-card:nth-child(2) { animation-delay: 0.2s; }
         .area-card:nth-child(3) { animation-delay: 0.4s; }
         .area-card:nth-child(4) { animation-delay: 0.6s; }
+
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .portfolio-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .portfolio-tag {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .pagination-btn:hover, .pagination-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -388,6 +502,27 @@
         </div>
     </section>
 
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfólio de Projetos</h2>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-tag="all">Todos</button>
+                <button class="filter-btn" data-tag="aeronautica">Aeronáutica</button>
+                <button class="filter-btn" data-tag="mecanica">Mecânica</button>
+                <button class="filter-btn" data-tag="consultoria">Consultoria</button>
+                <button class="filter-btn" data-tag="pericia">Perícia</button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio items will be dynamically inserted here -->
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -410,5 +545,174 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Portfolio data from JSON
+        const portfolioData = {
+            "engenharia_aeronautica": [
+                {
+                    "tipo": "Cargos e Funções Técnicas",
+                    "empresas": [
+                        {
+                            "nome": "FLAMINGO UNIMED AIR TÁXI AÉREO LTDA.",
+                            "localizacao": "Congonhas - São Paulo SP - Brasil",
+                            "cargo": "Gerente de Manutenção (Táxi Aéreo) e RPQS / Inspetor Chefe (Oficina de Manutenção)",
+                            "periodo": "1999-06 a 2005-10",
+                            "atividades": "Engenharia de Manutenção de Aeronaves para LEAR JET 35 e 36, PILATUS PC 12 e PC 12/45, BELL 206L3 e SIKORSKY S76",
+                            "imagem": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                        },
+                        // ... more items
+                    ]
+                }
+            ],
+            "engenharia_mecanica": [
+                {
+                    "tipo": "Automobilística",
+                    "descricao": "Perícia técnica de motores e componentes sinistrados",
+                    "itens": [
+                        {
+                            "descricao": "Vistoria técnica pericial de um LOTE DE 144 MOTORES FORD modelo 6FDE 1.6 FLEX sinistrado em acidente rodoviário no transporte de traslado.",
+                            "data": "23/07/2009",
+                            "localizacao": "Taubaté SP",
+                            "empresa": "ACE Seguradora S/A",
+                            "imagem": "https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Configuration
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        let currentFilter = 'all';
+
+        // Function to create portfolio items
+        function createPortfolioItems(items) {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+                
+                const image = item.imagem || 'https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80';
+                
+                card.innerHTML = `
+                    <img src="${image}" alt="${item.nome || item.descricao}" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>${item.nome || item.descricao}</h3>
+                        <p>${item.localizacao || item.empresa}</p>
+                        <p>${item.periodo || item.data}</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">${item.tipo || 'Projeto'}</span>
+                            <span class="portfolio-tag">${item.cargo || 'Serviço Técnico'}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Function to update pagination
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'pagination-btn';
+            prevBtn.innerHTML = '&laquo; Anterior';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    filterAndDisplayItems();
+                }
+            };
+            pagination.appendChild(prevBtn);
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => {
+                    currentPage = i;
+                    filterAndDisplayItems();
+                };
+                pagination.appendChild(pageBtn);
+            }
+
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'pagination-btn';
+            nextBtn.innerHTML = 'Próximo &raquo;';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    filterAndDisplayItems();
+                }
+            };
+            pagination.appendChild(nextBtn);
+        }
+
+        // Function to filter and display items
+        function filterAndDisplayItems() {
+            let filteredItems = [];
+            
+            // Flatten and filter items based on current filter
+            if (currentFilter === 'all') {
+                Object.values(portfolioData).forEach(category => {
+                    category.forEach(item => {
+                        if (item.empresas) {
+                            filteredItems = filteredItems.concat(item.empresas);
+                        }
+                        if (item.itens) {
+                            filteredItems = filteredItems.concat(item.itens);
+                        }
+                    });
+                });
+            } else {
+                // Filter by category
+                const category = portfolioData[currentFilter];
+                if (category) {
+                    category.forEach(item => {
+                        if (item.empresas) {
+                            filteredItems = filteredItems.concat(item.empresas);
+                        }
+                        if (item.itens) {
+                            filteredItems = filteredItems.concat(item.itens);
+                        }
+                    });
+                }
+            }
+
+            // Calculate pagination
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedItems = filteredItems.slice(startIndex, endIndex);
+
+            createPortfolioItems(paginatedItems);
+            updatePagination(filteredItems.length);
+        }
+
+        // Initialize filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.tag;
+                currentPage = 1;
+                filterAndDisplayItems();
+            });
+        });
+
+        // Initial display
+        filterAndDisplayItems();
+    </script>
 </body>
 </html>
