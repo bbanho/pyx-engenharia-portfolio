@@ -1,0 +1,68 @@
+# Development and Documentation
+cursor_instruct.txt
+setup.log
+PROGRESS.md
+DEVELOPMENT.md
+*.pdf
+logo_pre.png
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.coverage
+htmlcov/
+
+# Keep essential files
+!index.html
+!*.css
+!*.json
+!.nojekyll
+!README.md
+!LICENSE
+!CNAME
+!robots.txt
+!sitemap.xml
+!favicon.ico
+!assets/
+!images/
+!portfolio_images/*.jpg
+!portfolio_images/*.png
+!portfolio_images/*.webp

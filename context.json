@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-06-17T01:15:17-03:00",
+  "session_info": {
+    "terminal_agent": "active",
+    "user": "bruno",
+    "working_directory": "/home/bruno",
+    "shell": "zsh 5.9",
+    "os": "Arch Linux"
+  },
+  "shared_context": {
+    "current_task": "",
+    "relevant_files": [],
+    "notes": [],
+    "commands_run": [],
+    "variables": {}
+  },
+  "instructions": {
+    "for_cursor_agent": "This file contains shared context between terminal agent and Cursor agent. Update this file to share information.",
+    "usage": "Both agents can read/write to this file to maintain shared state"
+  }
+}
