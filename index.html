@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PYX Engenharia e Consultoria</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1a237e;
-            --secondary-color: #0d47a1;
-            --accent-color: #2962ff;
-            --text-color: #333;
-            --light-bg: #f5f5f5;
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
             --white: #ffffff;
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -21,10 +23,15 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
+            color: var(--text-primary);
+            background-color: var(--primary-color);
         }
 
         .container {
@@ -33,10 +40,17 @@
             padding: 0 2rem;
         }
 
+        /* Header Styles */
         header {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .header-content {
@@ -45,138 +59,306 @@
             align-items: center;
         }
 
-        .logo h1 {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
         }
 
         .contact-info {
-            text-align: right;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
 
-        .contact-info p {
-            margin: 0.25rem 0;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
         }
 
+        .contact-item:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
         .hero {
-            background: var(--secondary-color);
-            color: var(--white);
-            padding: 4rem 0;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%2364ffda" opacity="0.1"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--white), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
         }
 
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            position: relative;
         }
 
         section:nth-child(even) {
-            background: var(--light-bg);
+            background: var(--secondary-color);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .section-title h2 {
-            color: var(--primary-color);
-            font-size: 2rem;
+            font-size: 2.5rem;
+            color: var(--white);
             margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
         }
 
-        .areas-grid {
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        /* Cards */
+        .areas-grid, .services-grid, .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        .area-card {
-            background: var(--white);
+        .area-card, .service-card, .project-card {
+            background: rgba(17, 34, 64, 0.7);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .area-card:hover, .service-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .service-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .service-card h3 {
-            color: var(--primary-color);
+        .card-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
             margin-bottom: 1rem;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .project-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            background: var(--primary-color);
+        .area-card h3, .service-card h3, .project-card h3 {
             color: var(--white);
-            padding: 2rem 0;
-            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .area-card p, .service-card p, .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card ul, .project-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-card li, .project-card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card li::before, .project-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 1rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
             }
 
             .contact-info {
-                text-align: center;
-                margin-top: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
                 font-size: 2rem;
             }
         }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .area-card, .service-card, .project-card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .area-card:nth-child(2) { animation-delay: 0.2s; }
+        .area-card:nth-child(3) { animation-delay: 0.4s; }
+        .area-card:nth-child(4) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
@@ -184,13 +366,21 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1>PYX ENGENHARIA</h1>
-                    <p>E CONSULTORIA LTDA.</p>
+                    <i class="fas fa-cogs logo-icon"></i>
+                    <div class="logo-text">
+                        <h1>PYX ENGENHARIA</h1>
+                        <p>E CONSULTORIA LTDA.</p>
+                    </div>
                 </div>
                 <div class="contact-info">
-                    <p>CREA-SP: 0547274</p>
-                    <p>CNPJ: 03.592.483/0001-59</p>
-                    <p>www.pyx.eng.br</p>
+                    <a href="tel:+5511953507373" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(11) 95350-7373</span>
+                    </a>
+                    <a href="mailto:paulo.rodrigues@pyx.eng.br" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>paulo.rodrigues@pyx.eng.br</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -198,8 +388,11 @@
 
     <section class="hero">
         <div class="container">
-            <h2>Excelência em Engenharia Aeronáutica e Mecânica</h2>
-            <p>Desde 1999, oferecendo soluções técnicas especializadas em engenharia aeronáutica e mecânica para empresas e pessoas físicas.</p>
+            <div class="hero-content">
+                <h2>Excelência em Engenharia Aeronáutica e Mecânica</h2>
+                <p>Desde 1999, oferecendo soluções técnicas especializadas em engenharia aeronáutica e mecânica para empresas e pessoas físicas.</p>
+                <a href="#contact" class="cta-button">Entre em Contato</a>
+            </div>
         </div>
     </section>
 
@@ -210,18 +403,22 @@
             </div>
             <div class="areas-grid">
                 <div class="area-card">
+                    <i class="fas fa-plane-departure card-icon"></i>
                     <h3>Engenharia Aeronáutica</h3>
                     <p>Especialistas em manutenção de aeronaves e homologação de empresas aéreas.</p>
                 </div>
                 <div class="area-card">
+                    <i class="fas fa-cogs card-icon"></i>
                     <h3>Engenharia Mecânica</h3>
                     <p>Serviços técnicos especializados em equipamentos e máquinas.</p>
                 </div>
                 <div class="area-card">
+                    <i class="fas fa-handshake card-icon"></i>
                     <h3>Consultoria</h3>
                     <p>Assessoria técnica especializada para sua empresa.</p>
                 </div>
                 <div class="area-card">
+                    <i class="fas fa-clipboard-check card-icon"></i>
                     <h3>Perícia</h3>
                     <p>Vistorias técnicas e laudos periciais especializados.</p>
                 </div>
@@ -236,6 +433,7 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
+                    <i class="fas fa-plane card-icon"></i>
                     <h3>Engenharia Aeronáutica</h3>
                     <ul>
                         <li>Gerenciamento e controle de aeronaves</li>
@@ -245,6 +443,7 @@
                     </ul>
                 </div>
                 <div class="service-card">
+                    <i class="fas fa-tools card-icon"></i>
                     <h3>Engenharia Mecânica</h3>
                     <ul>
                         <li>Regulamentação e vistorias</li>
@@ -254,6 +453,7 @@
                     </ul>
                 </div>
                 <div class="service-card">
+                    <i class="fas fa-chart-line card-icon"></i>
                     <h3>Consultoria Técnica</h3>
                     <ul>
                         <li>Assessoria técnica especializada</li>
@@ -273,6 +473,7 @@
             </div>
             <div class="projects-grid">
                 <div class="project-card">
+                    <i class="fas fa-plane-arrival card-icon"></i>
                     <h3>Engenharia Aeronáutica</h3>
                     <p>Extensa experiência em:</p>
                     <ul>
@@ -283,6 +484,7 @@
                     </ul>
                 </div>
                 <div class="project-card">
+                    <i class="fas fa-industry card-icon"></i>
                     <h3>Engenharia Mecânica</h3>
                     <p>Projetos em diversas áreas:</p>
                     <ul>
@@ -296,12 +498,12 @@
         </div>
     </section>
 
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contato</h3>
-                    <p>Rua Frei Caneca, 180</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Frei Caneca, 180</p>
                     <p>Consolação - São Paulo - SP</p>
                     <p>CEP 01307-000</p>
                 </div>
@@ -309,11 +511,17 @@
                     <h3>Diretoria</h3>
                     <p><strong>Diretor Técnico:</strong> Paulo Sergio Rodrigues</p>
                     <p><strong>Diretor Executivo:</strong> Renato Funicelli Vigneron</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Contato Direto</h3>
-                    <p>Email: paulo.rodrigues@pyx.eng.br</p>
-                    <p>Tel: (11) 95350-7373</p>
+                    <p><i class="fas fa-envelope"></i> paulo.rodrigues@pyx.eng.br</p>
+                    <p><i class="fas fa-phone"></i> (11) 95350-7373</p>
+                    <p><i class="fas fa-globe"></i> www.pyx.eng.br</p>
                 </div>
             </div>
         </div>
