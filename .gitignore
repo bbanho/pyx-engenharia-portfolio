@@ -1,9 +1,10 @@
-# Development Tools
-toolbox/
-*.py
-*.sh
-*.md
-!README.md
+# Development and Documentation
+cursor_instruct.txt
+setup.log
+PROGRESS.md
+DEVELOPMENT.md
+*.pdf
+logo_pre.png
 
 # Python
 __pycache__/
@@ -42,7 +43,6 @@ ENV/
 # Logs
 *.log
 logs/
-setup.log
 
 # Temporary files
 *.tmp
@@ -63,3 +63,6 @@ htmlcov/
 !favicon.ico
 !assets/
 !images/
+!portfolio_images/*.jpg
+!portfolio_images/*.png
+!portfolio_images/*.webp
