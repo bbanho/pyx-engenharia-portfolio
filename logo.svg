@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Rectangle -->
+    <rect width="800" height="200" fill="#1b5040"/>
+    
+    <!-- PYX Text -->
+    <text x="400" y="120" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="#dde8cb" text-anchor="middle">
+        PYX
+    </text>
+    
+    <!-- ENGENHARIA Text -->
+    <text x="400" y="170" font-family="Arial, sans-serif" font-size="40" fill="#85662e" text-anchor="middle">
+        ENGENHARIA
+    </text>
+    
+    <!-- Decorative Line -->
+    <line x1="200" y1="140" x2="600" y2="140" stroke="#85662e" stroke-width="4"/>
+</svg> 

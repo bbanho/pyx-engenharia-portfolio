@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0a192f;
-            --secondary-color: #112240;
-            --accent-color: #64ffda;
-            --text-primary: #ccd6f6;
-            --text-secondary: #8892b0;
+            --primary-color: #1b5040;
+            --secondary-color: #85662e;
+            --accent-color: #dde8cb;
+            --text-primary: #ffffff;
+            --text-secondary: #dde8cb;
             --white: #ffffff;
             --transition: all 0.3s ease;
         }
@@ -63,15 +63,22 @@
             gap: 1rem;
         }
 
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--accent-color);
+            display: none; /* Hide text when using logo */
         }
 
         .logo p {
             color: var(--text-secondary);
             font-size: 0.9rem;
+            display: none; /* Hide text when using logo */
         }
 
         .contact-info {
@@ -267,6 +274,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
+                    <img src="logo.svg" alt="PYX Engenharia Logo">
                     <h1>PYX ENGENHARIA</h1>
                     <p>E CONSULTORIA LTDA.</p>
                 </div>
