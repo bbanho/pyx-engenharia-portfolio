@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYX Engenharia e Consultoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1b5040;
+            --secondary-color: #dde8cb;
+            --accent-color: #886523;
+            --text-primary: #1b5040;
+            --text-secondary: #886523;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block; /* Show text again */
+        }
+
+        .logo p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: block; /* Show text again */
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            transition: background-color 0.3s ease;
+        }
+
+        section:nth-child(odd) {
+            background: var(--white);
+        }
+
+        section:nth-child(even) {
+            background: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        /* Grid Layouts */
+        .areas-grid, .services-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Card Styles */
+        .area-card, .service-card, .project-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: var(--transition);
+            border: 1px solid var(--secondary-color);
+        }
+
+        .area-card:hover, .service-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .area-card h3, .service-card h3, .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .area-card p, .service-card p, .project-card p {
+            color: var(--text-secondary);
+        }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--primary-color);
+            padding: 4rem 0;
+            margin-top: 4rem;
+            color: var(--white);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .area-card, .service-card, .project-card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .area-card:nth-child(2) { animation-delay: 0.2s; }
+        .area-card:nth-child(3) { animation-delay: 0.4s; }
+        .area-card:nth-child(4) { animation-delay: 0.6s; }
+
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .portfolio-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .portfolio-tag {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .pagination-btn:hover, .pagination-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Add new styles for navigation menu */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin: 0 1rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: var(--secondary-color);
+            color: var(--accent-color);
+        }
+
+        /* WhatsApp contact form styles */
+        .whatsapp-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .whatsapp-form input,
+        .whatsapp-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .whatsapp-form button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-form button:hover {
+            background: #128C7E;
+        }
+
+        /* Legal info section styles */
+        .legal-info {
+            background: var(--secondary-color);
+            padding: 4rem 2rem;
+        }
+
+        .legal-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .legal-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .legal-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .legal-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        /* Add loading indicator */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--secondary-color);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: loading 0.75s ease infinite;
+        }
+
+        @keyframes loading {
+            from { transform: rotate(0turn) }
+            to { transform: rotate(1turn) }
+        }
+
+        /* Add language switcher */
+        .language-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .language-switcher button {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .language-switcher button.active {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Add loading indicator -->
+    <div class="loading" id="loading"></div>
+
+    <!-- Add language switcher -->
+    <div class="language-switcher">
+        <button data-lang="pt-BR" class="active">PT</button>
+        <button data-lang="en">EN</button>
+    </div>
+
+    <!-- Add navigation menu -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#areas">Áreas</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#projects">Projetos</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#legal">Informações Legais</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>PYX ENGENHARIA</h1>
+                    <p>E CONSULTORIA LTDA.</p>
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-certificate"></i> CREA-SP: 0547274</p>
+                    <p><i class="fas fa-building"></i> CNPJ: 03.592.483/0001-59</p>
+                    <p><i class="fas fa-globe"></i> www.pyx.eng.br</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Excelência em Engenharia Aeronáutica e Mecânica</h2>
+                <p>Desde 1999, oferecendo soluções técnicas especializadas em engenharia aeronáutica e mecânica para empresas e pessoas físicas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="areas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Áreas de Atuação</h2>
+            </div>
+            <div class="areas-grid">
+                <div class="area-card">
+                    <h3><i class="fas fa-plane"></i> Engenharia Aeronáutica</h3>
+                    <p>Especialistas em manutenção de aeronaves e homologação de empresas aéreas.</p>
+                </div>
+                <div class="area-card">
+                    <h3><i class="fas fa-cogs"></i> Engenharia Mecânica</h3>
+                    <p>Serviços técnicos especializados em equipamentos e máquinas.</p>
+                </div>
+                <div class="area-card">
+                    <h3><i class="fas fa-handshake"></i> Consultoria</h3>
+                    <p>Assessoria técnica especializada para sua empresa.</p>
+                </div>
+                <div class="area-card">
+                    <h3><i class="fas fa-clipboard-check"></i> Perícia</h3>
+                    <p>Vistorias técnicas e laudos periciais especializados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Serviços Oferecidos</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3><i class="fas fa-plane-departure"></i> Engenharia Aeronáutica</h3>
+                    <ul>
+                        <li>Gerenciamento e controle de aeronaves</li>
+                        <li>Controle técnico de manutenção</li>
+                        <li>Avaliação técnica e econômica</li>
+                        <li>Certificação e homologação</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3><i class="fas fa-tools"></i> Engenharia Mecânica</h3>
+                    <ul>
+                        <li>Regulamentação e vistorias</li>
+                        <li>Perícia técnica</li>
+                        <li>Avaliação e arbitragem</li>
+                        <li>Laudos técnicos especializados</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3><i class="fas fa-chart-line"></i> Consultoria Técnica</h3>
+                    <ul>
+                        <li>Assessoria técnica especializada</li>
+                        <li>Planejamento e projetos</li>
+                        <li>Estudos de viabilidade</li>
+                        <li>Direção de obra e serviço técnico</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projetos e Experiência</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3><i class="fas fa-plane"></i> Engenharia Aeronáutica</h3>
+                    <p>Extensa experiência em:</p>
+                    <ul>
+                        <li>Manutenção de aeronaves</li>
+                        <li>Certificação de empresas aéreas</li>
+                        <li>Vistorias técnicas</li>
+                        <li>Perícias aeronáuticas</li>
+                    </ul>
+                </div>
+                <div class="project-card">
+                    <h3><i class="fas fa-industry"></i> Engenharia Mecânica</h3>
+                    <p>Projetos em diversas áreas:</p>
+                    <ul>
+                        <li>Automobilística</li>
+                        <li>Energia eólica</li>
+                        <li>Energia nuclear</li>
+                        <li>Indústria e mineração</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfólio de Projetos</h2>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-tag="all">Todos</button>
+                <button class="filter-btn" data-tag="aeronautica">Aeronáutica</button>
+                <button class="filter-btn" data-tag="mecanica">Mecânica</button>
+                <button class="filter-btn" data-tag="consultoria">Consultoria</button>
+                <button class="filter-btn" data-tag="pericia">Perícia</button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio items will be dynamically inserted here -->
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add WhatsApp contact form section -->
+    <section id="contact" class="whatsapp-form">
+        <h2>Entre em Contato</h2>
+        <form id="whatsappForm">
+            <input type="text" id="name" placeholder="Seu Nome" required>
+            <input type="email" id="email" placeholder="Seu Email" required>
+            <textarea id="message" placeholder="Sua Mensagem" rows="4" required></textarea>
+            <button type="submit">Enviar via WhatsApp</button>
+        </form>
+    </section>
+
+    <!-- Add legal info section -->
+    <section id="legal" class="legal-info">
+        <div class="container">
+            <div class="section-title">
+                <h2>Informações Legais</h2>
+            </div>
+            <div class="legal-cards">
+                <div class="legal-card">
+                    <h3>Certificações</h3>
+                    <img src="portfolio_images/portfolio_image-001.jpg" alt="Certificações">
+                    <p>Empresa certificada desde 1999, com ampla experiência em engenharia aeronáutica e mecânica.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Áreas de Atuação</h3>
+                    <img src="portfolio_images/portfolio_image-002.jpg" alt="Áreas de Atuação">
+                    <p>Especializada em manutenção de aeronaves, homologação de empresas aéreas e serviços técnicos.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Qualidade e Segurança</h3>
+                    <img src="portfolio_images/portfolio_image-003.jpg" alt="Qualidade e Segurança">
+                    <p>Comprometida com os mais altos padrões de qualidade e segurança em todos os serviços prestados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Contato</h3>
+                    <p>Rua Frei Caneca, 180</p>
+                    <p>Consolação - São Paulo - SP</p>
+                    <p>CEP 01307-000</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-users"></i> Diretoria</h3>
+                    <p><strong>Diretor Técnico:</strong> Paulo Sergio Rodrigues</p>
+                    <p><strong>Diretor Executivo:</strong> Renato Funicelli Vigneron</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-phone"></i> Contato Direto</h3>
+                    <p><i class="fas fa-envelope"></i> paulo.rodrigues@pyx.eng.br</p>
+                    <p><i class="fas fa-phone-alt"></i> (11) 95350-7373</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load translations
+        let translations = {};
+        let currentLang = 'pt-BR';
+
+        async function loadTranslations() {
+            try {
+                const response = await fetch('translations.json');
+                translations = await response.json();
+                updateContent();
+            } catch (error) {
+                console.error('Error loading translations:', error);
+            }
+        }
+
+        // Load portfolio data
+        let portfolioData = {};
+
+        async function loadPortfolioData() {
+            try {
+                const response = await fetch('portfolio.json');
+                portfolioData = await response.json();
+                filterAndDisplayItems();
+            } catch (error) {
+                console.error('Error loading portfolio data:', error);
+            }
+        }
+
+        // Update content based on language
+        function updateContent() {
+            const lang = translations[currentLang];
+            if (!lang) return;
+
+            // Update navigation
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                const key = link.getAttribute('href').replace('#', '');
+                if (lang.nav[key]) {
+                    link.textContent = lang.nav[key];
+                }
+            });
+
+            // Update hero section
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                hero.querySelector('h2').textContent = lang.hero.title;
+                hero.querySelector('p').textContent = lang.hero.subtitle;
+            }
+
+            // Update contact form
+            const contact = document.querySelector('.whatsapp-form');
+            if (contact) {
+                contact.querySelector('h2').textContent = lang.contact.title;
+                contact.querySelector('#name').placeholder = lang.contact.name;
+                contact.querySelector('#email').placeholder = lang.contact.email;
+                contact.querySelector('#message').placeholder = lang.contact.message;
+                contact.querySelector('button').textContent = lang.contact.submit;
+            }
+
+            // Update legal section
+            const legal = document.querySelector('.legal-info');
+            if (legal) {
+                legal.querySelector('h2').textContent = lang.legal.title;
+                const cards = legal.querySelectorAll('.legal-card');
+                cards[0].querySelector('h3').textContent = lang.legal.certifications.title;
+                cards[0].querySelector('p').textContent = lang.legal.certifications.description;
+                cards[1].querySelector('h3').textContent = lang.legal.areas.title;
+                cards[1].querySelector('p').textContent = lang.legal.areas.description;
+                cards[2].querySelector('h3').textContent = lang.legal.quality.title;
+                cards[2].querySelector('p').textContent = lang.legal.quality.description;
+            }
+        }
+
+        // Initialize language switcher
+        document.querySelectorAll('.language-switcher button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.language-switcher button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLang = btn.dataset.lang;
+                updateContent();
+            });
+        });
+
+        // Initialize loading
+        window.addEventListener('load', async () => {
+            await Promise.all([
+                loadTranslations(),
+                loadPortfolioData()
+            ]);
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        // Configuration
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        let currentFilter = 'all';
+
+        // Function to create portfolio items
+        function createPortfolioItems(items) {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+                
+                const image = item.imagem || 'https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80';
+                
+                card.innerHTML = `
+                    <img src="${image}" alt="${item.nome || item.descricao}" class="portfolio-image" loading="lazy">
+                    <div class="portfolio-content">
+                        <h3>${item.nome || item.descricao}</h3>
+                        <p>${item.localizacao || item.empresa}</p>
+                        <p>${item.periodo || item.data}</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">${item.tipo || 'Projeto'}</span>
+                            <span class="portfolio-tag">${item.cargo || 'Serviço Técnico'}</span>
+                        </div>
+    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Function to update pagination
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'pagination-btn';
+            prevBtn.innerHTML = '&laquo; Anterior';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    filterAndDisplayItems();
+                }
+            };
+            pagination.appendChild(prevBtn);
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.onclick = () => {
+                    currentPage = i;
+                    filterAndDisplayItems();
+                };
+                pagination.appendChild(pageBtn);
+            }
+
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'pagination-btn';
+            nextBtn.innerHTML = 'Próximo &raquo;';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    filterAndDisplayItems();
+                }
+            };
+            pagination.appendChild(nextBtn);
+        }
+
+        // Function to filter and display items
+        function filterAndDisplayItems() {
+            if (!portfolioData) return;
+            
+            let filteredItems = [];
+            
+            if (currentFilter === 'all') {
+                Object.values(portfolioData).forEach(category => {
+                    category.forEach(item => {
+                        if (item.empresas) {
+                            filteredItems = filteredItems.concat(item.empresas);
+                        }
+                        if (item.itens) {
+                            filteredItems = filteredItems.concat(item.itens);
+                        }
+                    });
+                });
+            } else {
+                const category = portfolioData[currentFilter];
+                if (category) {
+                    category.forEach(item => {
+                        if (item.empresas) {
+                            filteredItems = filteredItems.concat(item.empresas);
+                        }
+                        if (item.itens) {
+                            filteredItems = filteredItems.concat(item.itens);
+                        }
+                    });
+                }
+            }
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedItems = filteredItems.slice(startIndex, endIndex);
+
+            createPortfolioItems(paginatedItems);
+            updatePagination(filteredItems.length);
+        }
+
+        // Initialize filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.tag;
+                currentPage = 1;
+                filterAndDisplayItems();
+            });
+        });
+
+        // Initial display
+        filterAndDisplayItems();
+
+        // Add WhatsApp form JavaScript
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = `Nome: ${name}%0AEmail: ${email}%0AMensagem: ${message}`;
+            const whatsappUrl = `https://wa.me/5511999999999?text=${whatsappMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
