@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Interativo</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #23272e;
+      color: #e0e0e0;
+    }
+    #svg-container {
+      width: 100vw;
+      height: 100vh;
+      background: #23272e;
+      touch-action: none;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 24px #000a;
+      border-radius: 0;
+      border: 1px solid #222;
+    }
+    #svg-obj {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      will-change: transform;
+      transition: box-shadow 0.2s;
+      background: transparent;
+    }
+    /* Feedback visual para elementos SVG clicados */
+    .svg-flash {
+      filter: drop-shadow(0 0 8px #fff8) brightness(1.2);
+      transition: filter 0.2s;
+    }
+    /* Estilos para botões de expandir/retrair */
+    .expand-btn {
+      cursor: pointer;
+      fill: #4a9eff;
+      stroke: #2d5      stroke-width: 1;
+      opacity: 0.8;
+      transition: all0.2
+    }
+    .expand-btn:hover [object Object]
+      fill: #6bb3ff;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    .expand-btn text {
+      fill: white;
+      font-size: 12px;
+      font-weight: bold;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+    /* Estilos para nós interativos */
+    .node-interactive {
+      cursor: pointer;
+      transition: filter 0.2s, opacity 0.2s;
+    }
+    .node-interactive:hover {
+      filter: drop-shadow(0 0 8px #4a9eff) brightness(1.1);
+      opacity: 0.95;
+    }
+    .collapsed {
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+    .expanded {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="svg-container">
+    <object id="svg-obj" type="image/svg+xml" data="CONTEUDO.svg"></object>
+  </div>
+  <script>
+    const container = document.getElementById('svg-container');
+    const svgObj = document.getElementById('svg-obj');
+
+    let isDragging = false;
+    let lastX = 0, lastY = 0;
+    let translateX = 0, translateY = 0;
+    let scale = 1;
+    let lastScale = 1;
+    let pinchStartDist = 0;
+    let pinchMid = {x: 0, y: 0};
+
+    // Ajuste inicial para ocupar toda a largura do container e alinhar ao canto superior esquerdo
+    function setInitialPosition() {
+      const svgDoc = svgObj.contentDocument;
+      if (!svgDoc) {
+        setTimeout(setInitialPosition, 100);
+        return;
+      }
+      const svgEl = svgDoc.documentElement;
+      let vbWidth, vbHeight;
+      if (svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.width) {
+        vbWidth = svgEl.viewBox.baseVal.width;
+        vbHeight = svgEl.viewBox.baseVal.height;
+      } else {
+        vbWidth = svgEl.width.baseVal.value;
+        vbHeight = svgEl.height.baseVal.value;
+      }
+      const containerRect = container.getBoundingClientRect();
+      let cWidth = containerRect.width;
+      // Zoom máximo horizontal
+      scale = cWidth / vbWidth;
+      translateX = 0;
+      translateY = 0;
+      setTransform();
+    }
+
+    function setTransform() {
+      svgObj.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    // Mouse events
+    container.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      svgObj.style.pointerEvents = 'none';
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      translateX += dx;
+      translateY += dy;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      setTransform();
+    });
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      svgObj.style.pointerEvents = '';
+    });
+
+    // Touch events
+    container.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        pinchStartDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        lastScale = scale;
+        pinchMid = {
+          x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+          y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+        };
+      }
+    }, {passive: false});
+    container.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1 && isDragging) {
+        const dx = e.touches[0].clientX - lastX;
+        const dy = e.touches[0].clientY - lastY;
+        translateX += dx;
+        translateY += dy;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+        setTransform();
+      } else if (e.touches.length === 2) {
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        let newScale = lastScale * (dist / pinchStartDist);
+        newScale = Math.max(0.2, Math.min(newScale, 10));
+        // Zoom em torno do ponto médio
+        const mid = {
+          x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+          y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+        };
+        // Ajusta o pan para manter o ponto médio
+        translateX += (mid.x - pinchMid.x) * (1 - 1 / scale);
+        translateY += (mid.y - pinchMid.y) * (1 - 1 / scale);
+        scale = newScale;
+        setTransform();
+      }
+      e.preventDefault();
+    }, {passive: false});
+    window.addEventListener('touchend', (e) => {
+      isDragging = false;
+    });
+
+    // Zoom com scroll do mouse
+    container.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 1.1 : 0.9;
+      const prevScale = scale;
+      scale *= delta;
+      scale = Math.max(0.2, Math.min(scale, 10));
+      // Zoom em torno do mouse
+      const rect = container.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      translateX = mx - ((mx - translateX) * (scale / prevScale));
+      translateY = my - ((my - translateY) * (scale / prevScale));
+      setTransform();
+    }, {passive: false});
+
+    // Reset com duplo clique
+    container.addEventListener('dblclick', () => {
+      setInitialPosition();
+    });
+
+    // --- Funções de copiar/compartilhar ---
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      } else {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+    }
+
+    function shareViaWhatsApp(text) {
+      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    // Adiciona feedback visual
+    function flashElement(el) {
+      const old = el.getAttribute('filter');
+      el.setAttribute('filter', 'url(#flash)');
+      setTimeout(() => {
+        if (old) el.setAttribute('filter', old);
+        else el.removeAttribute('filter');
+      }, 300);
+    }
+
+    // --- Funções de expandir/retrair ---
+    function findChildNodes(parentNode) {
+      // Busca por elementos filhos baseado em diferentes estratégias
+      const children = [];
+      // Estratégia 1: Elementos com data-parent ou similar
+      const dataChildren = parentNode.querySelectorAll('[data-parent]');
+      dataChildren.forEach(child => children.push(child));
+      // Estratégia 2: Elementos dentro de grupos específicos
+      const groupChildren = parentNode.querySelectorAll('g[class*=child], g[class*=sub]');
+      groupChildren.forEach(child => children.push(child));
+      // Estratégia 3: Elementos com IDs relacionados
+      const parentId = parentNode.id;
+      if (parentId) {
+        const relatedChildren = parentNode.querySelectorAll(`[id*="${parentId}_"], [class*="${parentId}"]`);
+        relatedChildren.forEach(child => children.push(child));
+      }
+      return children;
+    }
+
+    function toggleNodeExpansion(node) {
+      const children = findChildNodes(node);
+      const isExpanded = !node.classList.contains('collapsed');
+      children.forEach(child => {
+        if (isExpanded) {
+          child.classList.add('collapsed');
+          child.style.display = 'none';
+        } else {
+          child.classList.remove('collapsed');
+          child.style.display = '';
+        }
+      });
+      if (isExpanded) {
+        node.classList.add('collapsed');
+        node.classList.remove('expanded');
+      } else {
+        node.classList.remove('collapsed');
+        node.classList.add('expanded');
+      }
+      // Salva o estado
+      const nodeId = node.id || node.getAttribute('data-id') || 'node_' + Math.random();
+      localStorage.setItem(`node_${nodeId}_expanded`, !isExpanded);
+    }
+
+    function addInteractiveToNodes() {
+      const svgDoc = svgObj.contentDocument;
+      if (!svgDoc) return;
+      // Identifica nós que podem ter filhos
+      const potentialNodes = svgDoc.querySelectorAll('g[class*="node"], g[class*="item"], rect[class*="node"], text[class*="title"]');
+      potentialNodes.forEach(node => {
+        node.classList.add('node-interactive');
+        // Restaura estado salvo
+        const nodeId = node.id || node.getAttribute('data-id') || 'node_' + Math.random();
+        const wasExpanded = localStorage.getItem(`node_${nodeId}_expanded`);
+        if (wasExpanded === 'false') {
+          node.classList.add('collapsed');
+        } else {
+          node.classList.add('expanded');
+        }
+        node.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // Expande/retrai filhos
+          toggleNodeExpansion(node);
+          // Copia/compartilha conteúdo
+          let content = node.getAttribute('data-content') || node.textContent || '';
+          if (!content.trim()) return;
+          node.classList.add('svg-flash');
+          setTimeout(() => node.classList.remove('svg-flash'), 300);
+          if (isMobile()) {
+            shareViaWhatsApp(content);
+          } else {
+            copyToClipboard(content);
+          }
+        });
+      });
+    }
+
+    // Após o SVG carregar, adiciona listeners
+    svgObj.addEventListener('load', () => {
+      setInitialPosition();
+      const svgDoc = svgObj.contentDocument;
+      if (!svgDoc) return;
+      
+      // Adiciona interatividade aos nós
+      setTimeout(() => {
+        addInteractiveToNodes();
+      }, 50);
+      
+      // Adiciona botões de expandir/retrair
+      // setTimeout(() => {
+      //   addExpandButtonsToNodes();
+      // }, 50); // Aguarda um pouco para garantir que o SVG foi renderizado
+      
+      // Adiciona um filtro para feedback visual
+      let defs = svgDoc.querySelector('defs');
+      if (!defs) {
+        defs = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        svgDoc.documentElement.insertBefore(defs, svgDoc.documentElement.firstChild);
+      }
+      if (!svgDoc.getElementById('flash')) {
+        const filter = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'filter');
+        filter.setAttribute('id', 'flash');
+        filter.innerHTML = '<feFlood flood-color="#fff" result="flood"/><feComposite in="flood" in2="SourceGraphic" operator="atop"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>';
+        defs.appendChild(filter);
+      }
+      
+      // Ajusta cor de fundo do SVG para escuro, se possível
+      svgDoc.documentElement.style.background = '#23272e';
+      svgDoc.documentElement.style.color = '#e0e0e0';    
+      // Seleciona nós clicáveis (ajuste conforme seu SVG: <g>, <rect>, <text>, etc)
+      const clickableNodes = svgDoc.querySelectorAll('[data-content], text, tspan');
+      clickableNodes.forEach(node => {
+        // node.style.cursor = 'pointer'; // Moved to .node-interactive
+        // node.addEventListener('click', (e) => { // Moved to .node-interactive
+        //   e.stopPropagation();
+        //   let content = node.getAttribute('data-content') || node.textContent || '';
+        //   if (!content.trim()) return;
+        //   node.classList.add('svg-flash');
+        //   setTimeout(() => node.classList.remove('svg-flash'), 300);
+        //   if (isMobile()) {
+        //     shareViaWhatsApp(content);
+        //   } else {
+        //     copyToClipboard(content);
+        //   }
+        // });
+        
+        // Contraste para textos
+        if (node.tagName === 'text' || node.tagName === 'tspan') {
+          node.setAttribute('fill', '#e0e0e0');
+          node.setAttribute('stroke', '#23272e');
+          node.setAttribute('stroke-width', '0.5');
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
